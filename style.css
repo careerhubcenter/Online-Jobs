@@ -334,6 +334,7 @@ footer {
     text-decoration: none;
     border-radius: 5px;
     transition: 0.3s;
+    margin-left: 30px;
 }
 
 .btn:hover {

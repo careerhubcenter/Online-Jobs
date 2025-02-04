@@ -23,7 +23,10 @@
                 <option value="India"></option>
                 <option value="Japan"></option>
             </datalist>
-            <button onclick="">Search</button>
+            
+    <!-- Search Button -->
+    <button class="search-btn" onclick="scrollToAboutUs()">Search</button>
+    
         </div>
         <div class="logo">
             <h1> Job Application</h1>
@@ -32,26 +35,17 @@
       
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#worldwide">Opportunities</a></li>
+                <li><a href="#opportunities">Opportunities</a></li>
                 <li><a href="#apply">Apply Now</a></li>
     </header>
-    
-    <!-- Search Bar (moved below the header) -->
-     <div class="search-container">
-    <input type="text" id="search-box" placeholder="Search by country..." list="countries">
-    <datalist id="countries">
-        <option value="USA"></option>
-        <option value="UK"></option>
-        <option value="Canada"></option>
-        <option value="Australia"></option>
-        <option value="Germany"></option>
-        <option value="France"></option>
-        <option value="India"></option>
-        <option value="Japan"></option>
-    </datalist>
-    
-</div>
-
+    <div>
+      
+      
+    </div>
+<br>
+</br>
+<br>
+</br>
     <main>
         <section id="home">
             <h2>Welcome to the Job Application Portal</h2>
@@ -82,10 +76,12 @@
                 </div>
             </div>
         </section>
+        
 
-        <section id="worldwide">
+        <section id="about-us">
             <h2>Apply for Your Dream Job</h2>
         </section>
+    </div>    
         <br>
         
         <div class="job-listing">
@@ -184,12 +180,23 @@
   </div>
 </section>
     </div>
+  
 
     <div class="footer-bottom">
         <p>&copy; 2025 CareerHub. All rights reserved.</p>
     </div>
 </footer>
 
+<!-- About Us Section -->
+    <div id="about-us" class="about-us">
+    </div>
+    
+    <!-- JavaScript for Smooth Scrolling -->
+    <script>
+      function scrollToAboutUs() {
+        document.getElementById("about-us").scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
 
 
 </body>
