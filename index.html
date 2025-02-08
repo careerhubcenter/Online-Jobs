@@ -172,10 +172,10 @@
     </div>
     </section>
 <section class="contact-info">
-  <h2>Contact Us</h2>
+  <h2>Contact Information</h2>
   <div class="contact-details">
     <p><strong>Email:</strong> hr.careerhubofficial@gmail.com</p>
-    <p><strong>WhatsApp:</strong> +1 (603) 426-1119</p>
+    
     <p><strong>Address:</strong> 5541 Industrial Inc Branch, By Denver Community Church, NYC, USA</p>
   </div>
 </section>
@@ -197,6 +197,60 @@
         document.getElementById("about-us").scrollIntoView({ behavior: "smooth" });
       }
     </script>
+    
+  <style>
+    /* Style for the floating chat button */
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000; /* Ensures the button stays on top */
+      background-color: #007bff; /* Primary blue color */
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none; /* Removes the underline from the link */
+      transition: background-color 0.3s ease;
+      margin-bottom: 50px;
+    }
+
+    /* Change background on hover */
+    .chat-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 600px) {
+      .chat-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 15px;
+        left: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Chat Support Button as an Anchor Link -->
+  <a href="https://t.me/Hr_assistantoffice" class="chat-button">
+    💬
+  </a>
+  
+</body>
+</html>
+
+</body>
+</html>
 
 
 </body>
