@@ -70,7 +70,7 @@
     
     /* ========= Hero Section ========= */
     #hero {
-      background: url('https://source.unsplash.com/1600x900/?career,job') no-repeat center center/cover;
+      background: url('https://i.ibb.co/hxvsv3c7/d67285cf753c2a99e25e6f366f4138f4.jpg" alt="d67285cf753c2a99e25e6f366f4138f4" border="0"></a>') no-repeat center center/cover;
       min-height: 70vh;
       display: flex;
       align-items: center;
@@ -207,6 +207,23 @@
     .job-salary {
       font-weight: bold;
     }
+    /* Apply for Job Button (single button below all job postings) */
+    .apply-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .apply-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    .apply-btn:hover {
+      background: #0056b3;
+    }
     
     /* ========= About Section ========= */
     #about {
@@ -236,7 +253,7 @@
     .footer-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: center; /* Changed from space-around to center */
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
@@ -244,6 +261,7 @@
     .footer-section {
       flex: 1 1 300px;
       margin: 20px;
+      text-align: center; /* Added to center text */
     }
     .footer-section h3 {
       margin-bottom: 20px;
@@ -257,29 +275,41 @@
       font-size: 14px;
       line-height: 1.6;
     }
-    /* Team Section in Footer */
-    .team-member {
+    /* ========= Team Section in Footer (Detailed Staff Cards) ========= */
+    .footer-section.team {
+      width: 100%;
       display: flex;
-      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    /* Increased staff images size */
+    .team-member {
+      background: #444;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 280px;
+      margin: 10px;
+      text-align: center;
+    }
     .team-member img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      margin-right: 15px;
+      margin-bottom: 15px;
       object-fit: cover;
+      border: 3px solid #007bff;
     }
     .member-info h4 {
-      margin: 0;
-      font-size: 16px;
+      margin-bottom: 5px;
+      font-size: 20px;
       color: #fff;
     }
     .member-info p {
-      margin: 2px 0;
+      margin: 5px 0;
       font-size: 14px;
+      color: #ddd;
     }
-    /* Social Media Icons */
+    /* ========= Social Media Icons ========= */
     .social-icons a {
       color: #fff;
       font-size: 20px;
@@ -328,6 +358,43 @@
         font-size: 20px;
         bottom: 15px;
         left: 15px;
+      }
+    }
+    
+    /* ========= Loading Screen ========= */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 24px;
+      z-index: 1000;
+    }
+    
+    /* ========= Responsive Footer ========= */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-section {
+        flex: 1 1 100%;
+        margin: 10px 0;
+      }
+      .footer-section.team {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .footer-section {
+        padding: 0 10px;
       }
     }
   </style>
@@ -434,6 +501,10 @@
         <p>Location: Australia</p>
       </div>
     </div>
+    <!-- Single Apply for Job Button Below All Job Postings -->
+    <div class="apply-container">
+      <a href="#" class="apply-btn" onclick="applyJob(event)">Apply for Job</a>
+    </div>
   </section>
 
   <!-- ========= About Section ========= -->
@@ -456,7 +527,7 @@
           Our mission is to deliver a secure, user-friendly platform to help you land your dream job.
         </p>
       </div>
-      <!-- Team Section in Footer -->
+      <!-- Team Section in Footer (Detailed Staff Cards) -->
       <div class="footer-section team">
         <h3>Our Team</h3>
         <div class="team-member">
@@ -503,10 +574,21 @@
   <!-- ========= Floating Chat Support Button ========= -->
   <a href="https://t.me/Hr_assistantoffice" class="chat-button">💬</a>
 
-  <!-- ========= Smooth Scrolling Script ========= -->
+  <!-- ========= Loading Screen ========= -->
+  <div id="loading-screen">Loading...</div>
+
+  <!-- ========= Smooth Scrolling & Apply Job Script ========= -->
   <script>
     function scrollToJobs() {
       document.getElementById("job-listings").scrollIntoView({ behavior: "smooth" });
+    }
+    function applyJob(event) {
+      event.preventDefault();
+      var loadingScreen = document.getElementById("loading-screen");
+      loadingScreen.style.display = "flex";
+      setTimeout(function(){
+        window.location.href = "application.html";
+      }, 2000);
     }
   </script>
 </body>

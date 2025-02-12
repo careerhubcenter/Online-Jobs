@@ -65,6 +65,7 @@
     .application-form input[type="tel"],
     .application-form input[type="date"],
     .application-form input[type="file"],
+    .application-form input[type="number"],
     .application-form select,
     .application-form textarea {
       width: 100%;
@@ -149,6 +150,10 @@
       
       <label for="experience">Experience:</label>
       <input type="text" id="experience" name="experience" placeholder="e.g., 3 years in web development" required>
+      
+      <!-- New Number Input Field -->
+      <label for="expected_salary">Salary Expectation (USD):</label>
+      <input type="number" id="expected_salary" name="expected_salary" min="0" step="any" placeholder="Enter expected salary">
       
       <label for="resume">Upload Resume or ID:</label>
       <input type="file" id="resume" name="resume" required>
