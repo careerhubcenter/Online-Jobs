@@ -1,29 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success - Application Submitted</title>
-    <link rel="stylesheet" href="success.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Success - CareerHub</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Reset and global styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #e0efff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #2e7d32; /* Success green */
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.1em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #2e7d32;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      transition: background 0.3s ease;
+      font-weight: 700;
+      margin: 10px;
+    }
+    .btn:hover {
+      background: #276528;
+    }
+    .next-steps {
+      margin-top: 30px;
+      text-align: left;
+    }
+    .next-steps h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .next-steps ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    .next-steps li {
+      margin-bottom: 8px;
+      color: #666;
+      font-size: 1em;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-    <div class="success-container">
-        <div class="success-box">
-            <h1>🎉 Success!</h1>
-            <p>Your application has been submitted successfully.</p>
-            <a href="https://careerhubcenter.github.io/Online-Jobs/index.html" class="btn">Go Back to Home</a>
-        </div>
-        <div>
-        <p> under review... wait for feedback from us inviting you on a live interview if approved.</p>
-        </div>
-        <br>
-      
-        <br>
-        </br>
-        <div class="footer">
-        <p>&copy; 2025 CareerHub. All rights reserved.</p>
-        
+  <div class="container">
+    <h1>Success! 🎉</h1>
+    <p>
+      Your application has been submitted successfully. Thank you for applying
+      with CareerHub!
+    </p>
+    <div>
+      <a href="https://careerhubcenter.github.io/Online-Jobs/index.html" class="btn"
+        >Go Back to Home</a
+      >
+      <a href="https://careerhubcenter.github.io/Online-Jobs/jobs.html" class="btn"
+        >View Latest Jobs</a
+      >
     </div>
-    
+    <div class="next-steps">
+      <h2>What’s Next?</h2>
+      <ul>
+        <li>Your application is now under review by our recruitment team.</li>
+        <li>
+          If shortlisted, you will receive an email invitation to a live interview.
+        </li>
+        <li>Keep an eye on our job board for new opportunities.</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <p>&copy; 2025 CareerHub. All rights reserved.</p>
+    </div>
+  </div>
 </body>
 </html>
