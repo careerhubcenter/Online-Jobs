@@ -6,7 +6,7 @@
   <title>CareerHub</title>
   <link rel="stylesheet" href="style.css" />
   <script defer src="s.js"></script>
-  <!-- Font Awesome for social media icons -->
+  <!-- Font Awesome for social media icons and star ratings -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <style>
     /* ========= Basic Reset & Body Styling ========= */
@@ -32,6 +32,11 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+    header.scrolled {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
     }
     header .logo h1 {
       font-size: 24px;
@@ -67,10 +72,15 @@
       color: #333;
       font-weight: bold;
     }
+    nav ul li a:hover {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 2px;
+    }
     
     /* ========= Hero Section ========= */
     #hero {
-      background: url('https://i.ibb.co/hxvsv3c7/d67285cf753c2a99e25e6f366f4138f4.jpg" alt="d67285cf753c2a99e25e6f366f4138f4" border="0"></a>') no-repeat center center/cover;
+      background: url('https://i.ibb.co/hxvsv3c7/d67285cf753c2a99e25e6f366f4138f4.jpg') no-repeat center center/cover;
       min-height: 70vh;
       display: flex;
       align-items: center;
@@ -190,11 +200,25 @@
       border-radius: 8px;
       padding: 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       background: #fff;
+      position: relative;
+      overflow: hidden;
     }
     .job-item:hover {
       transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    .job-item.featured::before {
+      content: "Featured";
+      position: absolute;
+      top: 10px;
+      right: -40px;
+      background: #007bff;
+      color: #fff;
+      padding: 5px 40px;
+      font-size: 12px;
+      transform: rotate(45deg);
     }
     .job-item h3 {
       font-size: 22px;
@@ -207,7 +231,6 @@
     .job-salary {
       font-weight: bold;
     }
-    /* Apply for Job Button (single button below all job postings) */
     .apply-container {
       text-align: center;
       margin-top: 20px;
@@ -243,6 +266,84 @@
       line-height: 1.5;
     }
     
+    /* ========= Review Section ========= */
+    #reviews {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    #reviews h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #007bff;
+    }
+    .review-slider {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .review-slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .review-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: flex-start;
+    }
+    .review-item .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+      border: 2px solid #007bff;
+    }
+    .review-content {
+      flex: 1;
+      text-align: left;
+    }
+    .review-content .stars {
+      color: #f1c40f;
+      margin-bottom: 10px;
+    }
+    .review-content p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .review-content .review-author {
+      font-weight: bold;
+      color: #007bff;
+      font-size: 14px;
+    }
+    .review-content .review-date {
+      font-size: 12px;
+      color: #777;
+    }
+    .review-nav {
+      margin-top: 20px;
+    }
+    .review-nav button {
+      padding: 8px 15px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 10px;
+      transition: background 0.3s ease;
+    }
+    .review-nav button:hover {
+      background: #0056b3;
+    }
+    
     /* ========= Classic Footer ========= */
     .footer {
       background-color: #333;
@@ -253,7 +354,7 @@
     .footer-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center; /* Changed from space-around to center */
+      justify-content: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
@@ -261,7 +362,7 @@
     .footer-section {
       flex: 1 1 300px;
       margin: 20px;
-      text-align: center; /* Added to center text */
+      text-align: center;
     }
     .footer-section h3 {
       margin-bottom: 20px;
@@ -275,7 +376,6 @@
       font-size: 14px;
       line-height: 1.6;
     }
-    /* ========= Team Section in Footer (Detailed Staff Cards) ========= */
     .footer-section.team {
       width: 100%;
       display: flex;
@@ -309,7 +409,6 @@
       font-size: 14px;
       color: #ddd;
     }
-    /* ========= Social Media Icons ========= */
     .social-icons a {
       color: #fff;
       font-size: 20px;
@@ -319,6 +418,11 @@
     }
     .social-icons a:hover {
       color: #007bff;
+    }
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
     }
     .footer-bottom {
       text-align: center;
@@ -397,6 +501,13 @@
         padding: 0 10px;
       }
     }
+    
+    /* ========= Search Highlight ========= */
+    .highlight {
+      background-color: yellow;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -417,7 +528,7 @@
         <option value="India">
         <option value="Japan">
       </datalist>
-      <button class="search-btn" onclick="scrollToJobs()">Search</button>
+      <button class="search-btn" onclick="searchJobs()">Search</button>
     </div>
     <nav>
       <ul>
@@ -463,7 +574,7 @@
   <section id="job-listings">
     <h2>Latest Job Opportunities</h2>
     <div class="job-listing">
-      <div class="job-item" data-country="USA">
+      <div class="job-item featured" data-country="USA">
         <h3>Software Developer</h3>
         <p>Develop and maintain innovative software solutions.</p>
         <p class="job-salary">Salary: $90,000 - $120,000/year</p>
@@ -475,13 +586,12 @@
         <p class="job-salary">Salary: £70,000 - £95,000/year</p>
         <p>Location: UK</p>
       </div>
-      <div class="job-item" data-country="Canada">
+      <div class="job-item featured" data-country="Canada">
         <h3>UX/UI Designer</h3>
         <p>Create user-centered designs for web and mobile applications.</p>
         <p class="job-salary">Salary: CAD $65,000 - $85,000/year</p>
         <p>Location: Canada</p>
       </div>
-      <!-- Additional realistic job opportunities -->
       <div class="job-item" data-country="USA">
         <h3>Data Scientist</h3>
         <p>Analyze complex datasets to drive informed business decisions.</p>
@@ -500,8 +610,13 @@
         <p class="job-salary">Salary: AUD $80,000 - $110,000/year</p>
         <p>Location: Australia</p>
       </div>
+      <div class="job-item" data-country="USA">
+        <h3>Truck Driver</h3>
+        <p>Transport goods across regional and national routes safely and efficiently.</p>
+        <p class="job-salary">Salary: $50,000 - $70,000/year</p>
+        <p>Location: USA</p>
+      </div>
     </div>
-    <!-- Single Apply for Job Button Below All Job Postings -->
     <div class="apply-container">
       <a href="#" class="apply-btn" onclick="applyJob(event)">Apply for Job</a>
     </div>
@@ -516,10 +631,113 @@
     </p>
   </section>
 
+  <!-- ========= Updated Review Section with Star Ratings ========= -->
+  <section id="reviews">
+    <h2>What Our Users Say</h2>
+    <div class="review-slider">
+      <div class="review-slides">
+        <div class="review-item">
+          <img src="https://i.ibb.co/r2Vh2w4q/8114e1105ce5f811e04a963650f78da7.jpg"  alt="Emily R." class="avatar">
+          <div class="review-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"CareerHub made my job hunt a breeze. Found a software developer role in just two weeks—amazing platform!"</p>
+            <p class="review-author">Emily R., Nurse Practitioner </p>
+            <p class="review-date">Feb 10, 2025</p>
+          </div>
+        </div>
+        <div class="review-item">
+          <img src="https://i.ibb.co/FbzfS4X1/2f9255c24e1afd2a18dda44a472f0f4d.jpg"
+           alt="James T." class="avatar">
+          <div class="review-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <p>"The variety of jobs is impressive, and the expert guidance really helped me polish my application."</p>
+            <p class="review-author">James T., Product Manager</p>
+            <p class="review-date">Jan 28, 2025</p>
+          </div>
+        </div>
+        <div class="review-item">
+          <img src="https://i.ibb.co/Y7pTNwJb/00853ee49a8268f6bcbb0add548593d3.jpg"alt="Natalie W." class="avatar">
+          <div class="review-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Applied to multiple UX roles with confidence thanks to the secure application process. Highly recommend!"</p>
+            <p class="review-author">Natalie W., UX Designer</p>
+            <p class="review-date">Feb 15, 2025</p>
+          </div>
+        </div>
+        <div class="review-item">
+          <img src="https://i.ibb.co/tTHgy03f/f9dd1f6f2061609965cc84c68394798b.jpg" alt="Liam K." class="avatar">
+          <div class="review-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <p>"Great platform, but the search could be a bit faster. Still, landed a data scientist job!"</p>
+            <p class="review-author">Liam K., Data Scientist</p>
+            <p class="review-date">Jan 15, 2025</p>
+          </div>
+        </div>
+        <div class="review-item">
+          <img src="https://i.ibb.co/Q7BVwkBw/1bcdfc2c4b1c36f8a76d48129a01cd8a.jpg" alt="Sophia M." class="avatar">
+          <div class="review-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"The global opportunities are unmatched. Found a marketing role in the UK that fits perfectly."</p>
+            <p class="review-author">Sophia M., Digital Marketing Specialist</p>
+            <p class="review-date">Feb 5, 2025</p>
+          </div>
+        </div>
+        <div class="review-item">
+          <img src="https://i.ibb.co/Df6fSWpm/3bf5afaefdb5c7b267d5c169f5037188.jpg" alt="Noah B." class="avatar">
+          <div class="review-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <p>"Good site, but I wish there were more cybersecurity listings. Still, the interface is top-notch."</p>
+            <p class="review-author">Noah B., Cyber Security Analyst</p>
+            <p class="review-date">Jan 20, 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review-nav">
+      <button onclick="prevReview()">Previous</button>
+      <button onclick="nextReview()">Next</button>
+    </div>
+  </section>
+
   <!-- ========= Classic Footer ========= -->
   <footer class="footer">
     <div class="footer-container">
-      <!-- About Section in Footer -->
       <div class="footer-section about">
         <h3>More About CareerHub</h3>
         <p>
@@ -527,14 +745,13 @@
           Our mission is to deliver a secure, user-friendly platform to help you land your dream job.
         </p>
       </div>
-      <!-- Team Section in Footer (Detailed Staff Cards) -->
       <div class="footer-section team">
         <h3>Our Team</h3>
         <div class="team-member">
           <img src="https://i.ibb.co/nMwv4g9r/Bdc7b856ff45d369b620d8ca33d2d024.jpg" alt="Joseph M. Connor" />
           <div class="member-info">
             <h4>Joseph M. Connor</h4>
-            <p>CEO &amp; Founder</p>
+            <p>CEO & Founder</p>
             <p>Over 20 years of experience in recruitment and business growth.</p>
           </div>
         </div>
@@ -542,7 +759,7 @@
           <img src="https://i.ibb.co/cSyN6JF1/74bb70063515b9694f0f92dc13e670d9.jpg" alt="Sarah Johnson" />
           <div class="member-info">
             <h4>Sarah Johnson</h4>
-            <p>CFO </p>
+            <p>CFO</p>
             <p>Expert in talent acquisition and employee relations.</p>
           </div>
         </div>
@@ -555,7 +772,6 @@
           </div>
         </div>
       </div>
-      <!-- Social Media Section in Footer -->
       <div class="footer-section social">
         <h3>Follow Us</h3>
         <div class="social-icons">
@@ -565,9 +781,16 @@
           <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
+      <div class="footer-section newsletter">
+        <h3>Stay Updated</h3>
+        <form>
+          <input type="email" placeholder="Enter your email" style="padding: 8px; border-radius: 4px; border: none; margin-right: 5px;">
+          <button type="submit" style="padding: 8px 15px; background: #007bff; color: #fff; border: none; border-radius: 4px;">Subscribe</button>
+        </form>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 CareerHub. All rights reserved.</p>
+      <p>© 2025 CareerHub. All rights reserved.</p>
     </div>
   </footer>
 
@@ -577,8 +800,9 @@
   <!-- ========= Loading Screen ========= -->
   <div id="loading-screen">Loading...</div>
 
-  <!-- ========= Smooth Scrolling & Apply Job Script ========= -->
+  <!-- ========= Updated Script ========= -->
   <script>
+    // Smooth Scrolling & Apply Job
     function scrollToJobs() {
       document.getElementById("job-listings").scrollIntoView({ behavior: "smooth" });
     }
@@ -590,6 +814,68 @@
         window.location.href = "application.html";
       }, 2000);
     }
+
+    // Enhanced Search Functionality
+    function searchJobs() {
+      const query = document.getElementById("search-box").value.toLowerCase();
+      const jobItems = document.querySelectorAll(".job-item");
+
+      jobItems.forEach(item => {
+        const title = item.querySelector("h3").textContent.toLowerCase();
+        const description = item.querySelector("p").textContent.toLowerCase();
+        const country = item.dataset.country.toLowerCase();
+
+        item.querySelectorAll(".highlight").forEach(highlight => {
+          highlight.outerHTML = highlight.textContent;
+        });
+
+        const matchesCountry = country.includes(query);
+        const matchesText = title.includes(query) || description.includes(query);
+
+        if (matchesCountry || matchesText) {
+          item.style.display = "block";
+          if (query && matchesText) {
+            const regex = new RegExp(`(${query})`, "gi");
+            const titleElement = item.querySelector("h3");
+            const descElement = item.querySelector("p:not(.job-salary):not(:last-child)");
+            titleElement.innerHTML = titleElement.textContent.replace(regex, '<span class="highlight">$1</span>');
+            descElement.innerHTML = descElement.textContent.replace(regex, '<span class="highlight">$1</span>');
+          }
+        } else {
+          item.style.display = "none";
+        }
+      });
+
+      scrollToJobs();
+    }
+
+    // Review Slider Functionality
+    let currentReview = 0;
+    const slides = document.querySelector(".review-slides");
+    const totalReviews = document.querySelectorAll(".review-item").length;
+
+    function updateSlider() {
+      slides.style.transform = `translateX(-${currentReview * 100}%)`;
+    }
+
+    function nextReview() {
+      currentReview = (currentReview + 1) % totalReviews;
+      updateSlider();
+    }
+
+    function prevReview() {
+      currentReview = (currentReview - 1 + totalReviews) % totalReviews;
+      updateSlider();
+    }
+
+    // Auto-slide every 5 seconds
+    setInterval(nextReview, 5000);
+
+    // Sticky Header on Scroll
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
   </script>
 </body>
-</html>
+        </html>
