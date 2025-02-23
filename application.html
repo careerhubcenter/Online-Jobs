@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Application Form</title>
+  <!-- Optional external stylesheet -->
   <link rel="stylesheet" href="application.css">
   <!-- Font Awesome for the header icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -14,8 +15,28 @@
       background: #f4f4f4;
       margin: 0;
       padding: 20px;
+      transition: background 0.3s, color 0.3s;
     }
-    
+    /* ========= Dark Mode Styling ========= */
+    .dark-mode {
+      background: #333;
+      color: #f4f4f4;
+    }
+    .dark-mode .application-form {
+      background: #444;
+      color: #f4f4f4;
+    }
+    .dark-mode input,
+    .dark-mode textarea,
+    .dark-mode select {
+      background: #555;
+      color: #f4f4f4;
+      border: 1px solid #777;
+    }
+    .dark-mode .form-header h1,
+    .dark-mode .form-header i {
+      color: #f4f4f4;
+    }
     /* ========= Header with Icon ========= */
     .form-header {
       text-align: center;
@@ -36,7 +57,22 @@
       color: #007bff;
       margin: 0;
     }
-    
+    /* Dark Mode Toggle Button (Classic Text) */
+    .dark-mode-toggle {
+      display: inline-block;
+      margin: 10px auto;
+      padding: 8px 16px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dark-mode-toggle:hover {
+      background: #0056b3;
+    }
     /* ========= Application Form ========= */
     .application-form {
       background: #fff;
@@ -45,45 +81,60 @@
       padding: 30px 40px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s, color 0.3s;
     }
-    
     .application-form h2 {
       text-align: center;
       color: #007bff;
       margin-bottom: 25px;
     }
-    
-    .application-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #333;
+    /* ========= Floating Label Input Groups ========= */
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
     }
-    
-    .application-form input[type="text"],
-    .application-form input[type="email"],
-    .application-form input[type="tel"],
-    .application-form input[type="date"],
-    .application-form input[type="file"],
-    .application-form input[type="number"],
-    .application-form select,
-    .application-form textarea {
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 12px 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 14px;
+      background: inherit;
+      color: inherit;
     }
-    
-    .application-form textarea {
-      resize: vertical;
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      border-color: #007bff;
+      outline: none;
     }
-    
-    /* Center the submit button */
+    .input-group label {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: inherit;
+      padding: 0 5px;
+      color: #777;
+      pointer-events: none;
+      transition: top 0.3s, font-size 0.3s, color 0.3s;
+    }
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label,
+    .input-group textarea:focus + label,
+    .input-group textarea:not(:placeholder-shown) + label,
+    .input-group select:focus + label,
+    .input-group select:not(:placeholder-shown) + label {
+      top: -8px;
+      font-size: 0.8rem;
+      color: #007bff;
+    }
+    /* ========= Submit Button ========= */
     .application-form button {
       display: block;
-      margin: 0 auto; /* Centers the button */
+      margin: 20px auto;
       padding: 12px 30px;
       background: #007bff;
       color: #fff;
@@ -91,15 +142,50 @@
       border-radius: 4px;
       font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s;
     }
-    
     .application-form button:hover {
       background: #0056b3;
     }
-    
-    /* Optional: Improve file input appearance */
-    input[type="file"] {
-      padding: 3px;
+    /* ========= Custom File Input ========= */
+    .file-input-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+    }
+    .file-input-wrapper input[type="file"] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .file-input-label {
+      display: block;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: inherit;
+      color: inherit;
+      text-align: center;
+      cursor: pointer;
+    }
+    /* ========= Consent Checkbox ========= */
+    .consent-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .consent-group input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    /* ========= Responsive Design ========= */
+    @media (max-width: 600px) {
+      .application-form {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -108,8 +194,10 @@
   <header class="form-header">
     <div class="header-container">
       <i class="fas fa-briefcase"></i>
-      <h1>Career-Hub</h1>
+      <h1>CareerHub</h1>
     </div>
+    <!-- Classic Text Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="darkModeToggle">Toggle Dark Mode</button>
   </header>
   
   <!-- Application Form Section -->
@@ -118,54 +206,107 @@
     <form action="https://formsubmit.co/ddd2fdec35fc2474d079a9e8e8918aad" method="POST" enctype="multipart/form-data">
       <!-- Redirect to success page -->
       <input type="hidden" name="_next" value="https://careerhubcenter.github.io/Online-Jobs/success.html">
-      
       <!-- Honeypot for spam protection -->
       <input type="text" name="_honey" style="display: none;">
-      
       <!-- Disable captcha -->
       <input type="hidden" name="_captcha" value="false">
       
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
+      <!-- Full Name -->
+      <div class="input-group">
+        <input type="text" id="name" name="name" placeholder=" " required>
+        <label for="name">Full Name</label>
+      </div>
       
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" required>
+      <!-- Email Address -->
+      <div class="input-group">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Email Address</label>
+      </div>
       
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required>
+      <!-- Phone Number -->
+      <div class="input-group">
+        <input type="tel" id="phone" name="phone" placeholder=" " required>
+        <label for="phone">Phone Number</label>
+      </div>
       
-      <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" name="dob" required>
+      <!-- Date of Birth -->
+      <div class="input-group">
+        <input type="date" id="dob" name="dob" placeholder=" " required>
+        <label for="dob">Date of Birth</label>
+      </div>
       
-      <label for="mother_maiden">Mother's Maiden Name:</label>
-      <input type="text" id="mother_maiden" name="mother_maiden" required>
+      <!-- Mother's Maiden Name -->
+      <div class="input-group">
+        <input type="text" id="mother_maiden" name="mother_maiden" placeholder=" " required>
+        <label for="mother_maiden">Mother's Maiden Name</label>
+      </div>
       
-      <label for="position">Position Applying For:</label>
-      <select id="position" name="position" required>
-        <option value="Web Developer">Web Developer</option>
-        <option value="Graphic Designer">Graphic Designer</option>
-        <option value="Freelancer">Freelancer</option>
-        <option value="Dropshipping/Digital Marketing">Digital Marketing Specialist</option>
-        <option value="Editor">Editor</option>
-        <option value="Online Tutor">Online Tutor</option>
-        <option value="Virtual Assistant">Virtual Assistant</option>
-      </select>
+      <!-- Position Applying For -->
+      <div class="input-group">
+        <select id="position" name="position" required>
+          <option value="" disabled selected hidden> </option>
+          <option value="Web Developer">Web Developer</option>
+          <option value="Graphic Designer">Graphic Designer</option>
+          <option value="Freelancer">Freelancer</option>
+          <option value="Dropshipping/Digital Marketing">Digital Marketing Specialist</option>
+          <option value="Editor">Editor</option>
+          <option value="Online Tutor">Online Tutor</option>
+          <option value="Virtual Assistant">Virtual Assistant</option>
+        </select>
+        <label for="position">Position Applying For</label>
+      </div>
       
-      <label for="experience">Experience:</label>
-      <input type="text" id="experience" name="experience" placeholder="e.g., 3 years in web development" required>
+      <!-- Experience -->
+      <div class="input-group">
+        <input type="text" id="experience" name="experience" placeholder=" " required>
+        <label for="experience">Experience (e.g., 3 years in web development)</label>
+      </div>
       
-      <!-- New Number Input Field -->
-      <label for="expected_salary">Salary Expectation (USD):</label>
-      <input type="number" id="expected_salary" name="expected_salary" min="0" step="any" placeholder="Enter expected salary">
+      <!-- Salary Expectation -->
+      <div class="input-group">
+        <input type="number" id="expected_salary" name="expected_salary" placeholder=" " min="0" step="any">
+        <label for="expected_salary">Salary Expectation (USD)</label>
+      </div>
       
-      <label for="resume">Upload Resume or ID:</label>
-      <input type="file" id="resume" name="resume" required>
+      <!-- Resume or ID Upload -->
+      <div class="input-group">
+        <div class="file-input-wrapper">
+          <label class="file-input-label" for="resume">Upload Resume or ID</label>
+          <input type="file" id="resume" name="resume" required>
+        </div>
+      </div>
       
-      <label for="message">Additional Information:</label>
-      <textarea id="message" name="message" rows="4" placeholder="Provide any additional details here..."></textarea>
+      <!-- Additional Information -->
+      <div class="input-group">
+        <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
+        <label for="message">Additional Information</label>
+      </div>
       
+      <!-- Consent Checkbox -->
+      <div class="consent-group">
+        <input type="checkbox" id="consent" name="consent" required>
+        <label for="consent">I agree to the <a href="#" target="_blank">terms and conditions</a></label>
+      </div>
+      
+      <!-- Submit Button -->
       <button type="submit">Submit Application</button>
     </form>
   </section>
+  
+  <script>
+    // Toggle Dark Mode
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+    
+    // Display selected file name for file input
+    const resumeInput = document.getElementById('resume');
+    const fileLabel = document.querySelector('.file-input-label');
+    resumeInput.addEventListener('change', function() {
+      const fileName = this.files[0] ? this.files[0].name : 'Upload Resume or ID';
+      fileLabel.textContent = fileName;
+    });
+  </script>
 </body>
 </html>
